@@ -88,23 +88,27 @@ var modelFactory = function modelFactory(model, yakaApis) {
     }
   });
 
-  var changeURl = function changeURl(url, params) {
-    var str = '';
-    Object.keys(params).forEach(function (item, index) {
+  var getUrlQuery = function getUrlQuery(obj) {
+    var query = '';
+    var arr = Object.keys(obj);
+    if (!arr.length) {
+      return query;
+    }
+    arr.forEach(function (item, index) {
       if (index === 0) {
-        str += '?' + item + '=' + params[item];
+        query += '?' + item + '=' + obj[item];
       } else {
-        str += '&' + item + '=' + params[item];
+        query += '&' + item + '=' + obj[item];
       }
     });
-    return '' + url + str;
+    return query;
   };
 
   var doFetch = function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
       var auto = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
-      var _params, newURL;
+      var _params;
 
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
@@ -120,16 +124,13 @@ var modelFactory = function modelFactory(model, yakaApis) {
             case 2:
               _params = _context.sent;
 
-
               if (type === 'get' || type === 'restful') {
-                //支持url传递参数
-                newURL = changeURl(url, _params);
-
-                fetch(newURL, {
+                fetch(url + getUrlQuery(_params), {
                   headers: _extends({}, headers, {
                     'Content-Type': 'application/json'
                   }),
-                  method: 'GET'
+                  method: 'GET',
+                  mode: 'cors'
                 }).then(function (res) {
                   return res.json();
                 }).then(function (res) {
