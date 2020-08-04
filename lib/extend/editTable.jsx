@@ -5,7 +5,7 @@ export default function(
 	{ yakaApis, elementWalk, componentCheck, initData, components, form, bindingProps }
 ) {
 	const { EditTable } = components
-	const { columns, value, scrollWidth, add, remove, exportExcel } = ele.props
+	const { columns, value, scrollWidth, add, remove, exportExcel, importTrimFields=[] } = ele.props
 	const props = {
 		columns,
 		value: initData[ele.name] ? initData[ele.name] : value ? value : null,
@@ -21,7 +21,8 @@ export default function(
 		initData,
 		components,
 		form,
-		bindingProps
+		bindingProps,
+		importTrimFields
 	}
 	return <EditTable {...props} />
 }

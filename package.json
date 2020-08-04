@@ -19,7 +19,7 @@
 		"npm": ">= 3"
 	},
 	"scripts": {
-		"dist": "babel --watch lib -d dist ",
+		"dist": "rm -rf dist && babel lib -d dist --copy-files",
 		"test": "jest --watch"
 	},
 	"files": [

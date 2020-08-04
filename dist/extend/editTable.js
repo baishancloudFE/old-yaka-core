@@ -19,7 +19,9 @@ exports.default = function (ele, _ref) {
 	    scrollWidth = _ele$props.scrollWidth,
 	    add = _ele$props.add,
 	    remove = _ele$props.remove,
-	    exportExcel = _ele$props.exportExcel;
+	    exportExcel = _ele$props.exportExcel,
+	    _ele$props$importTrim = _ele$props.importTrimFields,
+	    importTrimFields = _ele$props$importTrim === undefined ? [] : _ele$props$importTrim;
 
 	var props = {
 		columns: columns,
@@ -36,7 +38,8 @@ exports.default = function (ele, _ref) {
 		initData: initData,
 		components: components,
 		form: form,
-		bindingProps: bindingProps
+		bindingProps: bindingProps,
+		importTrimFields: importTrimFields
 	};
 	return _react2.default.createElement(EditTable, props);
 };
